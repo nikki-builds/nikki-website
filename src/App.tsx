@@ -13,24 +13,24 @@ export default function App() {
   const [active, setActive] = useState<SectionId>('hero')
 
   useEffect(() => {
-    const nodes = SECTION_IDS.map((id) => document.getElementById(id)).filter(
-      (el): el is HTMLElement => el !== null,
-    )
+    const update = () => {
+      const probe = 110
+      let current: SectionId = 'hero'
+      for (const id of SECTION_IDS) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        if (el.getBoundingClientRect().top <= probe) current = id
+      }
+      setActive(current)
+    }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-        if (visible[0]?.target.id) {
-          setActive(visible[0].target.id as SectionId)
-        }
-      },
-      { rootMargin: '-28% 0px -55% 0px', threshold: [0, 0.15, 0.4, 0.7] },
-    )
-
-    nodes.forEach((node) => observer.observe(node))
-    return () => observer.disconnect()
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
   }, [])
 
   const inverted = DARK_SECTIONS.includes(active)

@@ -24,9 +24,12 @@ export function Contact() {
           </p>
           <a
             href="mailto:hello@nikkibuilds.dev"
-            className="mt-12 inline-flex w-fit font-display text-[clamp(1.35rem,4.5vw,3.15rem)] uppercase decoration-ink decoration-[3px] underline-offset-8 hover:underline"
+            aria-label="hello@nikkibuilds.dev"
+            className="mt-12 inline-flex w-fit items-baseline font-display text-[clamp(1.35rem,4.5vw,3.15rem)] uppercase decoration-ink decoration-[3px] underline-offset-8 hover:underline"
           >
-            hello@nikkibuilds.dev
+            hello
+            <span className="font-sans font-extrabold">@</span>
+            nikkibuilds.dev
           </a>
         </div>
 
