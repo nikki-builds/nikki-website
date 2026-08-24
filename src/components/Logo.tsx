@@ -1,9 +1,13 @@
+import { useId } from 'react'
+
 type LogoProps = {
   inverted?: boolean
   size?: number
 }
 
 export function Logo({ inverted = false, size = 84 }: LogoProps) {
+  const uid = useId().replace(/:/g, '')
+  const ringId = `logo-ring-${uid}`
   const text = inverted ? '#f6f5f1' : '#000000'
 
   return (
@@ -20,7 +24,7 @@ export function Logo({ inverted = false, size = 84 }: LogoProps) {
       >
         <defs>
           <path
-            id="logo-ring"
+            id={ringId}
             d="M 50,50 m -39.5,0 a 39.5,39.5 0 1,1 79,0 a 39.5,39.5 0 1,1 -79,0"
           />
         </defs>
@@ -31,7 +35,7 @@ export function Logo({ inverted = false, size = 84 }: LogoProps) {
           fontWeight="700"
           letterSpacing="2.4"
         >
-          <textPath href="#logo-ring">NIKKI BUILDS • NIKKI CREATES •</textPath>
+          <textPath href={`#${ringId}`}>NIKKI BUILDS • NIKKI CREATES •</textPath>
         </text>
       </svg>
       <span className="col-start-1 row-start-1 grid size-[58%] place-items-center rounded-full bg-accent transition-transform duration-300 group-hover:scale-105">

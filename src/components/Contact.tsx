@@ -4,10 +4,10 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="flex min-h-svh flex-col bg-accent text-ink"
+      className="flex flex-1 flex-col bg-accent text-ink"
       aria-labelledby="contact-heading"
     >
-      <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-5 py-20 sm:px-8 lg:px-12 lg:py-24">
+      <div className="mx-auto flex w-full max-w-[1400px] min-h-[calc(100svh-6.5rem)] flex-1 flex-col px-5 py-20 sm:px-8 lg:px-12 lg:py-24">
         <div className="flex flex-1 flex-col justify-center py-8 lg:py-12">
           <h2
             id="contact-heading"

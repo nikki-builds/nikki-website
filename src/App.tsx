@@ -5,7 +5,7 @@ import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { Skills } from './components/Skills'
 import { Work } from './components/Work'
-import { DARK_SECTIONS, type SectionId } from './content'
+import type { SectionId } from './content'
 
 const SECTION_IDS: SectionId[] = ['hero', 'about', 'skills', 'work', 'contact']
 
@@ -14,7 +14,8 @@ export default function App() {
 
   useEffect(() => {
     const update = () => {
-      const probe = 110
+      const header = document.querySelector('header')
+      const probe = (header?.getBoundingClientRect().height ?? 120) + 8
       let current: SectionId = 'hero'
       for (const id of SECTION_IDS) {
         const el = document.getElementById(id)
@@ -33,8 +34,6 @@ export default function App() {
     }
   }, [])
 
-  const inverted = DARK_SECTIONS.includes(active)
-
   return (
     <>
       <a
@@ -43,13 +42,24 @@ export default function App() {
       >
         Skip to content
       </a>
-      <Header active={active} inverted={inverted} />
       <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Work />
-        <Contact />
+        <div className="bg-cream">
+          <Header active={active} tone="cream" />
+          <Hero />
+        </div>
+        <div className="bg-ink">
+          <Header active={active} tone="ink" />
+          <About />
+          <Skills />
+        </div>
+        <div className="bg-cream">
+          <Header active={active} tone="cream" />
+          <Work />
+        </div>
+        <div className="flex min-h-svh flex-col bg-accent">
+          <Header active={active} tone="accent" />
+          <Contact />
+        </div>
       </main>
     </>
   )

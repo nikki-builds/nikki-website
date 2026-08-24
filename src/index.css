@@ -14,7 +14,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 8.5rem;
   }
 
   @media (prefers-reduced-motion: reduce) {

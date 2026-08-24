@@ -7,8 +7,6 @@ export const NAV_LINKS = [
 
 export type SectionId = 'hero' | 'about' | 'skills' | 'work' | 'contact'
 
-export const DARK_SECTIONS: SectionId[] = ['about', 'skills']
-
 export type Project = {
   index: string
   title: string
