@@ -1,0 +1,72 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 756 >>
+stream
+BT
+/F1 12 Tf
+50 740 Td
+16 TL
+/F1 18 Tf
+(NIKKI ? WEB ENGINEER) Tj
+T*
+/F1 12 Tf
+(hello@nikkibuilds.dev) Tj
+T*
+() Tj
+T*
+(I build production web apps for founders and small teams.) Tj
+T*
+(Healthtech, applied AI, and the systems in between.) Tj
+T*
+() Tj
+T*
+(SKILLS) Tj
+T*
+(Frontend  React, Next.js, TypeScript, design systems, a11y) Tj
+T*
+(Backend   Node, Python, Postgres, auth, payments) Tj
+T*
+(Applied AI  LLM features, RAG, evals, vision extraction) Tj
+T*
+() Tj
+T*
+(SELECTED WORK) Tj
+T*
+(RecipeLens   Vision extraction and nutrient matching) Tj
+T*
+(Intake Flow  Patient intake for a three-clinic physio practice) Tj
+T*
+(Ledger Notes RAG over regulatory correspondence) Tj
+T*
+() Tj
+T*
+(6+ years shipping  ·  30+ client projects  ·  100% self-taught) Tj
+T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001048 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1118
+%%EOF

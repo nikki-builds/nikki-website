@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Syne', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+  --color-cream: #f6f5f1;
+  --color-accent: #ffcb41;
+  --color-ink: #000000;
+  --color-forest: #1a4731;
+  --color-charcoal: #1c1c1c;
+  --color-mute: #6b6b66;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  #root {
+    min-height: 100svh;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-variation-settings:
+    'SOFT' 0,
+    'WONK' 1,
+    'opsz' 144;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+}
+
+@utility highlight {
+  background-color: var(--color-accent);
+  box-decoration-clone: clone;
+  padding-inline: 0.08em;
+}
+
+@keyframes logo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility animate-logo {
+  animation: logo-spin 22s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-logo {
+    animation: none;
+  }
+}
