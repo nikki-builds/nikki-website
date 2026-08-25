@@ -14,11 +14,9 @@ export function Hero() {
             <span>
               I&apos;m <span className="highlight uppercase">Nikki</span>
             </span>
-            <span>
-              I build{' '}
-              <span className="whitespace-nowrap">
-                on the <span className="highlight uppercase">web</span>
-              </span>
+            <span>I build</span>
+            <span className="whitespace-nowrap">
+              on the <span className="highlight uppercase">web</span>
             </span>
           </h1>
 
