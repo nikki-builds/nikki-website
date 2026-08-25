@@ -54,7 +54,7 @@
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   padding-inline: 0.12em;
-  padding-block: 0.14em;
+  padding-block: 0.08em;
 }
 
 @keyframes logo-spin {

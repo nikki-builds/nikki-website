@@ -9,12 +9,12 @@ export function Hero() {
     >
       <div className="mx-auto grid min-h-[calc(100svh-var(--header-h,8rem))] max-w-[1400px] items-center gap-10 px-5 pb-16 pt-4 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-12 lg:pb-10 lg:pt-0">
         <div className="relative z-10 max-w-xl lg:max-w-none">
-          <h1 className="font-display text-[clamp(3rem,8vw,6rem)] !leading-[1.12] text-ink uppercase">
-            <span className="block">Hi,</span>
-            <span className="block">
+          <h1 className="font-display flex flex-col gap-2 text-[clamp(3rem,8vw,6rem)] !leading-[1.32] text-ink uppercase">
+            <span>Hi,</span>
+            <span>
               I&apos;m <span className="highlight">Nikki</span>
             </span>
-            <span className="mt-1 block">
+            <span>
               I build on the <span className="highlight">web</span>
             </span>
           </h1>
