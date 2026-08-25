@@ -12,10 +12,10 @@ export function Hero() {
           <h1 className="font-display flex flex-col gap-2 text-[clamp(3rem,8vw,6rem)] !leading-[1.32] text-ink">
             <span>Hi,</span>
             <span>
-              I&apos;m <span className="highlight">Nikki</span>
+              I&apos;m <span className="highlight uppercase">Nikki</span>
             </span>
             <span>
-              I build on the <span className="highlight">web</span>
+              I build on the <span className="highlight uppercase">web</span>
             </span>
           </h1>
 
