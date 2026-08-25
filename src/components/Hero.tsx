@@ -15,7 +15,10 @@ export function Hero() {
               I&apos;m <span className="highlight uppercase">Nikki</span>
             </span>
             <span>
-              I build on the <span className="highlight uppercase">web</span>
+              I build{' '}
+              <span className="whitespace-nowrap">
+                on the <span className="highlight uppercase">web</span>
+              </span>
             </span>
           </h1>
 
