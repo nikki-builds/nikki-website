@@ -9,7 +9,7 @@ export function Hero() {
     >
       <div className="mx-auto grid min-h-[calc(100svh-6.5rem)] max-w-[1400px] items-center gap-10 px-5 pb-16 pt-4 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-12 lg:pb-10 lg:pt-0">
         <div className="relative z-10 max-w-xl lg:max-w-none">
-          <h1 className="font-display text-[clamp(3.4rem,9vw,6.75rem)] text-ink uppercase">
+          <h1 className="font-display text-[clamp(3rem,8vw,6rem)] text-ink uppercase">
             <span className="block">Hi,</span>
             <span className="block">
               I&apos;m <span className="highlight">Nikki</span>
