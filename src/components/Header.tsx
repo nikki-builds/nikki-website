@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useState, type Ref } from 'react'
 import { NAV_LINKS, type SectionId } from '../content'
 import { Logo } from './Logo'
 
@@ -6,7 +6,7 @@ export type HeaderTone = 'cream' | 'ink' | 'accent'
 
 type HeaderProps = {
   active: SectionId
-  tone: HeaderTone
+  ref?: Ref<HTMLElement>
 }
 
 const TONE: Record<
@@ -36,10 +36,16 @@ const TONE: Record<
   },
 }
 
-export function Header({ active, tone }: HeaderProps) {
+function toneFrom(active: SectionId): HeaderTone {
+  if (active === 'about' || active === 'skills') return 'ink'
+  if (active === 'contact') return 'accent'
+  return 'cream'
+}
+
+export function Header({ active, ref }: HeaderProps) {
   const [open, setOpen] = useState(false)
   const navId = useId()
-  const t = TONE[tone]
+  const t = TONE[toneFrom(active)]
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -49,7 +55,10 @@ export function Header({ active, tone }: HeaderProps) {
   }, [open])
 
   return (
-    <header className={`sticky top-0 z-50 ${t.bg}`}>
+    <header
+      ref={ref}
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${t.bg}`}
+    >
       <div className="relative z-50 mx-auto flex max-w-[1400px] items-center justify-between px-5 py-5 sm:px-8 lg:px-12 lg:py-7">
         <Logo inverted={t.inverted} size={76} />
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { About } from './components/About'
 import { Contact } from './components/Contact'
 import { Header } from './components/Header'
@@ -7,22 +7,35 @@ import { Skills } from './components/Skills'
 import { Work } from './components/Work'
 import type { SectionId } from './content'
 
-const SECTION_IDS: SectionId[] = ['hero', 'about', 'skills', 'work', 'contact']
+const SECTION_IDS: readonly SectionId[] = ['hero', 'about', 'skills', 'work', 'contact']
+
+function isSectionId(id: string | undefined): id is SectionId {
+  return id !== undefined && (SECTION_IDS as readonly string[]).includes(id)
+}
 
 export default function App() {
   const [active, setActive] = useState<SectionId>('hero')
+  const headerRef = useRef<HTMLElement>(null)
+
+  useLayoutEffect(() => {
+    const header = headerRef.current
+    if (!header) return
+    const apply = () => {
+      document.documentElement.style.setProperty('--header-h', `${header.offsetHeight}px`)
+    }
+    apply()
+    const ro = new ResizeObserver(apply)
+    ro.observe(header)
+    return () => ro.disconnect()
+  }, [])
 
   useEffect(() => {
     const update = () => {
-      const header = document.querySelector('header')
-      const probe = (header?.getBoundingClientRect().height ?? 120) + 8
-      let current: SectionId = 'hero'
-      for (const id of SECTION_IDS) {
-        const el = document.getElementById(id)
-        if (!el) continue
-        if (el.getBoundingClientRect().top <= probe) current = id
-      }
-      setActive(current)
+      const header = headerRef.current
+      const y = (header?.getBoundingClientRect().bottom ?? 120) + 2
+      const hit = document.elementFromPoint(window.innerWidth / 2, y)
+      const id = hit?.closest('section')?.id
+      if (isSectionId(id)) setActive(id)
     }
 
     update()
@@ -42,24 +55,13 @@ export default function App() {
       >
         Skip to content
       </a>
-      <main>
-        <div className="bg-cream">
-          <Header active={active} tone="cream" />
-          <Hero />
-        </div>
-        <div className="bg-ink">
-          <Header active={active} tone="ink" />
-          <About />
-          <Skills />
-        </div>
-        <div className="bg-cream">
-          <Header active={active} tone="cream" />
-          <Work />
-        </div>
-        <div className="flex min-h-svh flex-col bg-accent">
-          <Header active={active} tone="accent" />
-          <Contact />
-        </div>
+      <Header ref={headerRef} active={active} />
+      <main className="pt-[var(--header-h,8rem)]">
+        <Hero />
+        <About />
+        <Skills />
+        <Work />
+        <Contact />
       </main>
     </>
   )
