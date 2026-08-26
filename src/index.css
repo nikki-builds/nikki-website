@@ -50,11 +50,37 @@
 }
 
 @utility highlight {
-  background-color: var(--color-accent);
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
   padding-inline: 0.12em;
   padding-block: 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--color-accent);
+}
+
+#hero .highlight::before {
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: highlight-swipe 0.6s cubic-bezier(0.22, 1, 0.36, 1)
+    var(--highlight-delay, 0.2s) both;
+}
+
+@keyframes highlight-swipe {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 @keyframes logo-spin {
@@ -70,5 +96,10 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-logo {
     animation: none;
+  }
+
+  #hero .highlight::before {
+    animation: none;
+    transform: none;
   }
 }

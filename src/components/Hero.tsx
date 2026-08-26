@@ -12,11 +12,12 @@ export function Hero() {
           <h1 className="font-display flex flex-col gap-2 text-[clamp(3rem,8vw,6rem)] !leading-[1.32] text-ink">
             <span>Hi,</span>
             <span>
-              I&apos;m <span className="highlight uppercase">Nikki</span>
+              I&apos;m{' '}
+              <span className="highlight uppercase [--highlight-delay:0.25s]">Nikki</span>
             </span>
             <span>I build</span>
             <span className="whitespace-nowrap">
-              on the <span className="highlight uppercase">web</span>
+              on the <span className="highlight uppercase [--highlight-delay:0.6s]">web</span>
             </span>
           </h1>
 
