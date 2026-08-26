@@ -1,3 +1,4 @@
+import { HighlightMark } from './HighlightMark'
 import { HeroPortrait } from './HeroPortrait'
 
 export function Hero() {
@@ -12,12 +13,11 @@ export function Hero() {
           <h1 className="font-display flex flex-col gap-2 text-[clamp(3rem,8vw,6rem)] !leading-[1.32] text-ink">
             <span>Hi,</span>
             <span>
-              I&apos;m{' '}
-              <span className="highlight uppercase [--highlight-delay:0.3s]">Nikki</span>
+              I&apos;m <HighlightMark delay={0.25}>Nikki</HighlightMark>
             </span>
             <span>I build</span>
             <span className="whitespace-nowrap">
-              on the <span className="highlight uppercase [--highlight-delay:0.95s]">web</span>
+              on the <HighlightMark delay={0.7}>web</HighlightMark>
             </span>
           </h1>
 

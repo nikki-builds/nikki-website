@@ -61,21 +61,6 @@
   box-decoration-break: clone;
 }
 
-#hero .highlight {
-  background-size: 0% 100%;
-  animation: highlight-grow 1.2s cubic-bezier(0.22, 1, 0.36, 1)
-    var(--highlight-delay, 0.3s) both;
-}
-
-@keyframes highlight-grow {
-  from {
-    background-size: 0% 100%;
-  }
-  to {
-    background-size: 100% 100%;
-  }
-}
-
 @keyframes logo-spin {
   to {
     transform: rotate(360deg);
@@ -89,10 +74,5 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-logo {
     animation: none;
-  }
-
-  #hero .highlight {
-    animation: none;
-    background-size: 100% 100%;
   }
 }
