@@ -12,30 +12,24 @@ export function About() {
           <div>
             <h2
               id="about-heading"
-              className="font-display text-[clamp(2.6rem,7vw,5.6rem)] uppercase"
+              className="font-display text-[clamp(2.6rem,7vw,5.6rem)]"
             >
-              No degree. Ten
-              <br />
-              thousand
-              <br />
-              commits.
+              Software, built with care.
             </h2>
 
             <div className="mt-10 grid gap-8 text-[0.98rem] leading-[1.7] text-cream/95 sm:grid-cols-2 sm:gap-12 lg:max-w-4xl">
               <p>
-                I taught myself to code by shipping things people actually used —
-                first a booking page for a friend&apos;s clinic, then a full
-                patient intake flow. Six years later I build production web apps
-                for founders and small teams who need someone who can own the
-                whole thing: data model, interface, deploy, and the follow-up
-                questions nobody planned for.
+                I started in nutrition and dietetics, then taught myself to code
+                — building small tools that people actually used until it turned
+                into a full-time thing. Now I build production web apps for
+                founders and small teams who need someone to own the whole
+                thing: data model, interface, and deploy.
               </p>
               <p>
-                Most of my work now sits near healthtech and applied AI —
-                nutrition analysis, clinical intake, retrieval over messy
-                documents. I like problems where the interface has to make
-                something genuinely complicated feel obvious, and where being
-                wrong has a cost.
+                I work in two lanes: custom web apps — AI features, databases,
+                real backend logic — for products that need more than a website
+                can do. And Webflow builds for founders who want a marketing
+                site they can update themselves without touching code.
               </p>
             </div>
 

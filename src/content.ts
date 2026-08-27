@@ -27,7 +27,7 @@ export const PROJECTS: readonly Project[] = [
     description:
       'Photograph a plate — or a recipe card — and get a structured nutrient breakdown. Vision extraction, USDA matching, and a log you can actually keep.',
     meta: 'Vision extraction · nutrient matching · Next.js + Postgres / Designed, built and shipped solo.',
-    tags: ['Healthtech', 'Claude Vision', 'Solo build'],
+    tags: ['Web App', 'Healthtech', 'Claude Vision', 'Solo build'],
     cta: 'Visit site',
     href: '#contact',
     caption: 'RecipeLens — app screenshot',
@@ -38,7 +38,7 @@ export const PROJECTS: readonly Project[] = [
     description:
       'Patient intake for a three-clinic physio practice. Consent, insurance, and history that used to live in a clipboard now land in the chart before the appointment starts.',
     meta: 'Consent, audit trail, clinic routing · React + Node / Freelance, eight weeks.',
-    tags: ['Healthtech', 'Forms at scale'],
+    tags: ['Web App', 'Healthtech', 'Forms at scale'],
     cta: 'Case study',
     href: '#contact',
     caption: 'Intake Flow — screenshot',
@@ -49,7 +49,7 @@ export const PROJECTS: readonly Project[] = [
     description:
       "Retrieval over five years of a supplement brand's regulatory correspondence, so their team can answer compliance questions in seconds with citations.",
     meta: 'RAG · pgvector · eval suite in CI\nFreelance, six weeks.',
-    tags: ['Applied AI', 'RAG'],
+    tags: ['Web App', 'Applied AI', 'RAG'],
     cta: 'Case study',
     href: '#contact',
     caption: 'Ledger Notes — screenshot',
@@ -58,33 +58,25 @@ export const PROJECTS: readonly Project[] = [
 
 export const SKILL_COLUMNS = [
   {
-    title: 'Frontend',
+    title: 'Web app development',
     accent: false,
     items: [
       'React · Next.js · TypeScript',
-      'Design systems & component APIs',
-      'CSS architecture, motion, a11y',
-      'Data-dense dashboards',
-    ],
-  },
-  {
-    title: 'Backend',
-    accent: false,
-    items: [
-      'Node · Python · REST & tRPC',
       'Postgres, schema & migrations',
+      'AI features, RAG, vision APIs',
       'Auth, payments, webhooks',
+      'Design systems, motion, a11y',
       'Vercel · Fly.io · Supabase',
     ],
   },
   {
-    title: 'Applied AI',
+    title: 'Website builds',
     accent: true,
     items: [
-      'LLM features in production',
-      'RAG over messy documents',
-      'Evals, prompt regression tests',
-      'Vision & structured extraction',
+      'Webflow design & build',
+      'CMS the client can edit',
+      'Marketing sites & landing pages',
+      'Handoff without a codebase',
     ],
   },
 ] as const
@@ -93,7 +85,7 @@ export const SKILL_TAGS = [
   'HIPAA-aware builds',
   'Solo delivery',
   'Fixed-scope sprints',
-  'Handoff docs',
+  'Webflow handoff',
 ] as const
 
 export const STATS = [

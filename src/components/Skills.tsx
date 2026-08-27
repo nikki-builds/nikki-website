@@ -16,7 +16,7 @@ export function Skills() {
           </h2>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3 md:gap-5">
+        <div className="grid gap-4 md:grid-cols-2 md:gap-5">
           {SKILL_COLUMNS.map((col) => (
             <article
               key={col.title}
@@ -24,7 +24,11 @@ export function Skills() {
                 col.accent ? 'bg-accent text-ink' : 'bg-charcoal text-cream'
               }`}
             >
-              <h3 className="font-serif text-xl font-black tracking-wide text-white uppercase">
+              <h3
+                className={`font-serif text-xl font-black tracking-wide ${
+                  col.accent ? 'text-ink' : 'text-white'
+                }`}
+              >
                 {col.title}
               </h3>
               <ul className="mt-8 flex flex-col gap-3.5 font-sans text-[0.95rem] leading-snug">
