@@ -12,12 +12,12 @@ export function About() {
           <div>
             <h2
               id="about-heading"
-              className="font-display text-[clamp(2.6rem,7vw,5.6rem)]"
+              className="font-display text-[clamp(2.6rem,7vw,5.6rem)] !leading-[1.18] !tracking-[0.02em]"
             >
-              Software, built with care.
+              Web apps, built with care.
             </h2>
 
-            <div className="mt-10 grid gap-8 text-[0.98rem] leading-[1.7] text-cream/95 sm:grid-cols-2 sm:gap-12 lg:max-w-4xl">
+            <div className="mt-10 grid gap-8 text-[0.98rem] leading-[1.85] tracking-[0.04em] text-cream/95 sm:grid-cols-2 sm:gap-12 lg:max-w-4xl">
               <p>
                 I started in nutrition and dietetics, then taught myself to code
                 — building small tools that people actually used until it turned
