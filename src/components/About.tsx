@@ -1,4 +1,4 @@
-import { STATS } from '../content'
+import { FunFacts } from './FunFacts'
 
 export function About() {
   return (
@@ -35,20 +35,7 @@ export function About() {
               </p>
             </div>
 
-            <dl className="mt-16 grid grid-cols-3 gap-4 border-t border-white/15 pt-10 sm:max-w-3xl sm:gap-8">
-              {STATS.map((stat) => (
-                <div key={stat.label}>
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd className="font-display text-[clamp(2.4rem,6vw,4.5rem)] leading-none text-white">
-                    {stat.value}
-                    <span className="text-accent">{stat.suffix}</span>
-                  </dd>
-                  <p className="mt-3 font-sans text-[0.7rem] font-semibold tracking-[0.14em] text-cream uppercase sm:text-xs">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </dl>
+            <FunFacts />
           </div>
         </div>
       </div>

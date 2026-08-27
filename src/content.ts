@@ -88,10 +88,13 @@ export const SKILL_TAGS = [
   'Webflow handoff',
 ] as const
 
-export const STATS = [
-  { value: '6', suffix: '+', label: 'Years shipping' },
-  { value: '30', suffix: '+', label: 'Client projects' },
-  { value: '100', suffix: '%', label: 'Self-taught' },
+export const FUN_FACTS = [
+  'I love cuddling with my dog, Namu',
+  "You'd most likely find me at a movie theater on weekends",
+  'Baseball fan — the serious kind',
+  'Watermelon and peaches can genuinely turn my whole day around',
+  'Trypophobia is real, and it terrifies me more than any horror movie',
+  'Fast walker, happy life',
 ] as const
 
 export const SOCIAL = [
