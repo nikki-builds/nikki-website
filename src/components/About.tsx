@@ -14,7 +14,9 @@ export function About() {
               id="about-heading"
               className="font-display text-[clamp(2.6rem,7vw,5.6rem)] !leading-[1.18] !tracking-[0.02em]"
             >
-              Web apps, built with care.
+              Web apps,
+              <br />
+              built with care.
             </h2>
 
             <div className="mt-10 grid gap-8 text-[0.98rem] leading-[1.85] tracking-[0.04em] text-cream/95 sm:grid-cols-2 sm:gap-12 lg:max-w-4xl">
