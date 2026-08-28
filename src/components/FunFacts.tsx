@@ -1,6 +1,24 @@
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion, type Variants } from 'framer-motion'
 import { useId, useState } from 'react'
 import { FUN_FACTS } from '../content'
+
+const fadeEase = [0.22, 1, 0.36, 1] as const
+
+const listVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.06 },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.32, ease: fadeEase },
+  },
+}
 
 export function FunFacts() {
   const [open, setOpen] = useState(false)
@@ -22,7 +40,7 @@ export function FunFacts() {
         >
           {open ? '−' : '+'}
         </span>
-        Click here if you&apos;re curious about me
+        Extra credit
       </button>
 
       <AnimatePresence initial={false}>
@@ -32,17 +50,22 @@ export function FunFacts() {
             initial={reduce ? false : { height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={reduce ? undefined : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.38, ease: fadeEase }}
             className="overflow-hidden"
           >
-            <ul className="mt-5 flex flex-col gap-2.5 font-sans text-[0.86rem] leading-relaxed tracking-[0.03em] text-cream/65">
+            <motion.ul
+              className="mt-5 flex flex-col gap-2.5 font-sans text-[0.86rem] leading-relaxed tracking-[0.03em] text-cream/65"
+              variants={listVariants}
+              initial={reduce ? 'show' : 'hidden'}
+              animate="show"
+            >
               {FUN_FACTS.map((fact) => (
-                <li key={fact} className="flex gap-3">
+                <motion.li key={fact} className="flex gap-3" variants={itemVariants}>
                   <span className="mt-[0.7em] size-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
                   <span>{fact}</span>
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </motion.div>
         )}
       </AnimatePresence>
