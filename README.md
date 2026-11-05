@@ -1,6 +1,6 @@
 # Nikki — personal portfolio
 
-Editorial portfolio site for a freelance web engineer. Cream, black, and yellow. Fraunces for headlines, Syne for body. One page: hero, about, skills, selected work, contact.
+Editorial portfolio site for a freelance web engineer. Cream, black, and yellow. Fraunces for headlines, Outfit for body. One page: hero, about, skills, selected work, contact.
 
 ## Run locally
 
@@ -20,7 +20,7 @@ npm run preview
 
 - Vite + React + TypeScript
 - Tailwind CSS v4
-- Google Fonts: [Fraunces](https://fonts.google.com/specimen/Fraunces), [Syne](https://fonts.google.com/specimen/Syne)
+- Google Fonts: [Fraunces](https://fonts.google.com/specimen/Fraunces), [Outfit](https://fonts.google.com/specimen/Outfit)
 
 ## Sections
 

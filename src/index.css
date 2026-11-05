@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: 'Syne', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+  --font-sans: 'General Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'General Sans', ui-sans-serif, system-ui, sans-serif;
   --color-cream: #f6f5f1;
   --color-accent: #ffcb41;
   --color-ink: #000000;
@@ -39,20 +39,20 @@
 }
 
 @utility font-display {
-  font-family: var(--font-serif);
-  font-weight: 900;
-  font-variation-settings:
-    'SOFT' 0,
-    'WONK' 1,
-    'opsz' 144;
-  letter-spacing: -0.03em;
-  line-height: 0.92;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+@utility body-copy {
+  line-height: 1.75;
 }
 
 @utility highlight {
   display: inline-block;
   padding-inline: 0.12em;
-  padding-block: 0.08em;
+  padding-block: 0.12em;
   background-image: linear-gradient(var(--color-accent), var(--color-accent));
   background-repeat: no-repeat;
   background-position: left center;
@@ -67,12 +67,92 @@
   }
 }
 
+@keyframes logo-flick {
+  0% {
+    transform: rotate(0deg);
+  }
+  88% {
+    transform: rotate(-382deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
 @utility animate-logo {
   animation: logo-spin 22s linear infinite;
 }
 
+@utility logo-ring-flick {
+  animation: none;
+}
+
+.group:hover .logo-ring-flick {
+  animation: logo-flick 0.52s cubic-bezier(0.33, 1, 0.68, 1) 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-logo {
+  .animate-logo,
+  .logo-ring-flick {
     animation: none;
+  }
+
+  .group:hover .logo-ring-flick {
+    animation: none;
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 900px) {
+  .hero-grid {
+    gap: 1.25rem;
+    padding-bottom: 1rem;
+    padding-top: 0.25rem;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.625rem, 5.25vw, 4.5rem);
+    gap: 0.125rem;
+    line-height: 1.22 !important;
+  }
+
+  .hero-lede {
+    margin-top: 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .hero-cta {
+    margin-top: 1.5rem;
+    padding-block: 0.75rem;
+  }
+
+  .hero-portrait-wrap {
+    height: min(58vh, 520px);
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 820px) {
+  .hero-grid {
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.375rem, 4.75vw, 4rem);
+    line-height: 1.18 !important;
+  }
+
+  .hero-lede {
+    margin-top: 1rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    margin-top: 1.25rem;
+  }
+
+  .hero-portrait-wrap {
+    height: min(52vh, 460px);
   }
 }

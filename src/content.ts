@@ -1,11 +1,12 @@
 export const NAV_LINKS = [
-  { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
   { id: 'work', label: 'Work' },
+  { id: 'about', label: 'About' },
   { id: 'contact', label: 'Contact' },
 ] as const
 
-export type SectionId = 'hero' | 'about' | 'skills' | 'work' | 'contact'
+export type SectionId = 'hero' | 'work' | 'about' | 'skills' | 'contact'
+
+export const CONTACT_EMAIL = 'hello@nikkibuilds.dev'
 
 export type Project = {
   index: string
@@ -14,9 +15,10 @@ export type Project = {
   description: string
   meta: string
   tags: readonly string[]
-  cta: string
   href: string
   caption: string
+  imageSrc?: string
+  imageAlt?: string
 }
 
 export const PROJECTS: readonly Project[] = [
@@ -28,50 +30,70 @@ export const PROJECTS: readonly Project[] = [
       'Photograph a plate — or a recipe card — and get a structured nutrient breakdown. Vision extraction, USDA matching, and a log you can actually keep.',
     meta: 'Vision extraction · nutrient matching · Next.js + Postgres / Designed, built and shipped solo.',
     tags: ['Web App', 'Healthtech', 'Claude Vision', 'Solo build'],
-    cta: 'Visit site',
-    href: '#contact',
+    href: '/work/recipelens',
     caption: 'RecipeLens — app screenshot',
+    imageSrc: '/assets/images/recipelens-screenshot.png',
+    imageAlt:
+      'RecipeLens app screenshot showing nutrient breakdown from a photographed plate',
   },
   {
     index: '02',
-    title: 'Intake Flow',
+    title: 'NutriGPT',
+    highlight: 'GPT',
     description:
-      'Patient intake for a three-clinic physio practice. Consent, insurance, and history that used to live in a clipboard now land in the chart before the appointment starts.',
-    meta: 'Consent, audit trail, clinic routing · React + Node / Freelance, eight weeks.',
-    tags: ['Web App', 'Healthtech', 'Forms at scale'],
-    cta: 'Case study',
-    href: '#contact',
-    caption: 'Intake Flow — screenshot',
+      'A nutrition-focused assistant that turns meal questions into clear, actionable guidance — built for people who want answers, not another generic chatbot.',
+    meta: 'Applied AI · conversational UX · React + Node / Solo build.',
+    tags: ['Web App', 'Healthtech', 'Applied AI'],
+    href: '/work/nutrigpt',
+    caption: 'NutriGPT — app screenshot',
+    imageSrc: '/assets/images/nutrigpt-screenshot.png',
+    imageAlt: 'NutriGPT chat interface showing nutrition Q&A',
   },
   {
     index: '03',
-    title: 'Ledger Notes',
+    title: 'Macro Calculator',
+    highlight: 'Calculator',
     description:
-      "Retrieval over five years of a supplement brand's regulatory correspondence, so their team can answer compliance questions in seconds with citations.",
-    meta: 'RAG · pgvector · eval suite in CI\nFreelance, six weeks.',
-    tags: ['Web App', 'Applied AI', 'RAG'],
-    cta: 'Case study',
-    href: '#contact',
-    caption: 'Ledger Notes — screenshot',
+      'A macro and calorie calculator with a clean, mobile-first flow — set targets, adjust inputs, and see the numbers update in real time.',
+    meta: 'Frontend-focused build · React · Vercel / Solo build.',
+    tags: ['Web App', 'Healthtech', 'Frontend'],
+    href: '/work/macro-calculator',
+    caption: 'Macro Calculator — app screenshot',
+    imageSrc: '/assets/images/macrocalc-screenshot.png',
+    imageAlt: 'Macro Calculator app showing daily macro breakdown',
   },
 ]
 
-export const SKILL_COLUMNS = [
+export type SkillSubgroup = {
+  label: string
+  items: readonly string[]
+}
+
+export type SkillColumn = {
+  index: string
+  title: string
+  items?: readonly string[]
+  groups?: readonly SkillSubgroup[]
+}
+
+export const SKILL_COLUMNS: readonly SkillColumn[] = [
   {
+    index: '01',
     title: 'Web app development',
-    accent: false,
-    items: [
-      'React · Next.js · TypeScript',
-      'Postgres, schema & migrations',
-      'AI features, RAG, vision APIs',
-      'Auth, payments, webhooks',
-      'Design systems, motion, a11y',
-      'Vercel · Fly.io · Supabase',
+    groups: [
+      {
+        label: 'Frontend',
+        items: ['React, Tailwind CSS', 'Vercel'],
+      },
+      {
+        label: 'Backend',
+        items: ['Node.js, Express', 'MongoDB, Mongoose', 'OpenAI API (GPT-4o)'],
+      },
     ],
   },
   {
+    index: '02',
     title: 'Website builds',
-    accent: true,
     items: [
       'Webflow design & build',
       'CMS the client can edit',
@@ -79,27 +101,54 @@ export const SKILL_COLUMNS = [
       'Handoff without a codebase',
     ],
   },
-] as const
+  {
+    index: '03',
+    title: 'Current AI stack',
+    items: [
+      'Claude Code: code & technical architecture',
+      'Cursor: code & debugging',
+      'Claude Design, v0: UI prototyping',
+    ],
+  },
+]
 
-export const SKILL_TAGS = [
-  'HIPAA-aware builds',
-  'Solo delivery',
-  'Fixed-scope sprints',
-  'Webflow handoff',
-] as const
+export type FunFact = {
+  text: string
+  emoji: string
+  rotate: number
+  nudgeX: number
+  nudgeY: number
+}
 
-export const FUN_FACTS = [
-  'I love cuddling with my dog, Namu',
-  "You'd most likely find me at a movie theater on weekends",
-  'Baseball fan — the serious kind',
-  'Watermelon and peaches can genuinely turn my whole day around',
-  'Trypophobia is real, and it terrifies me more than any horror movie',
-  'Fast walker, happy life',
-] as const
+export const FUN_FACTS: readonly FunFact[] = [
+  { text: 'I love cuddling with my dog, Namu', emoji: '🐕', rotate: -2.5, nudgeX: 0, nudgeY: 2 },
+  {
+    text: "You'd most likely find me at a movie theater on weekends",
+    emoji: '🎬',
+    rotate: 2.8,
+    nudgeX: 6,
+    nudgeY: -2,
+  },
+  { text: 'Baseball fan — the serious kind', emoji: '⚾', rotate: -1.8, nudgeX: -4, nudgeY: 1 },
+  {
+    text: 'Watermelon and peaches can genuinely turn my whole day around',
+    emoji: '🍉',
+    rotate: 3,
+    nudgeX: 3,
+    nudgeY: -3,
+  },
+  {
+    text: 'Trypophobia is real, and it terrifies me more than any horror movie',
+    emoji: '😨',
+    rotate: -2.2,
+    nudgeX: -2,
+    nudgeY: 2,
+  },
+  { text: 'Fast walker, happy life', emoji: '🚶', rotate: 1.6, nudgeX: 5, nudgeY: -1 },
+]
 
 export const SOCIAL = [
   { label: 'GitHub', href: 'https://github.com' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com' },
-  { label: 'Read.cv', href: 'https://read.cv' },
   { label: 'Résumé (PDF)', href: '/resume.pdf' },
 ] as const

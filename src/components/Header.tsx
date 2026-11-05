@@ -11,7 +11,7 @@ type HeaderProps = {
 
 const TONE: Record<
   HeaderTone,
-  { bg: string; ink: string; bar: string; inverted: boolean; overlay: string }
+  { bg: string; ink: string; bar: string; inverted: boolean; overlay: string; navHover: string }
 > = {
   cream: {
     bg: 'bg-cream',
@@ -19,6 +19,7 @@ const TONE: Record<
     bar: 'bg-ink',
     inverted: false,
     overlay: 'bg-cream text-ink',
+    navHover: 'hover:text-accent',
   },
   ink: {
     bg: 'bg-ink',
@@ -26,6 +27,7 @@ const TONE: Record<
     bar: 'bg-cream',
     inverted: true,
     overlay: 'bg-ink text-cream',
+    navHover: 'hover:text-accent',
   },
   accent: {
     bg: 'bg-accent',
@@ -33,11 +35,12 @@ const TONE: Record<
     bar: 'bg-ink',
     inverted: false,
     overlay: 'bg-accent text-ink',
+    navHover: 'hover:text-cream',
   },
 }
 
 function toneFrom(active: SectionId): HeaderTone {
-  if (active === 'about' || active === 'skills') return 'ink'
+  if (active === 'work') return 'ink'
   if (active === 'contact') return 'accent'
   return 'cream'
 }
@@ -67,7 +70,8 @@ export function Header({ active, ref }: HeaderProps) {
           aria-label="Primary"
         >
           {NAV_LINKS.map((link, i) => {
-            const isActive = active === link.id
+            const isActive =
+              active === link.id || (link.id === 'about' && active === 'skills')
             return (
               <span key={link.id} className="flex items-center">
                 {i > 0 && (
@@ -77,7 +81,7 @@ export function Header({ active, ref }: HeaderProps) {
                 )}
                 <a
                   href={`#${link.id}`}
-                  className={`relative py-1 ${isActive ? 'font-black' : 'font-bold'}`}
+                  className={`relative py-1 transition-[color,transform] duration-300 ease-out hover:-translate-y-px ${t.navHover} ${isActive ? 'font-bold' : 'font-semibold'}`}
                 >
                   {link.label}
                   <span
@@ -113,12 +117,16 @@ export function Header({ active, ref }: HeaderProps) {
           id={navId}
           className={`fixed inset-0 z-40 flex flex-col justify-center px-8 sm:hidden ${t.overlay}`}
         >
-          <nav className="flex flex-col gap-6 font-serif text-4xl font-black uppercase" aria-label="Mobile">
+          <nav className="flex flex-col gap-6 font-serif text-4xl font-bold uppercase" aria-label="Mobile">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
-                className={active === link.id ? 'underline decoration-[3px] underline-offset-8' : ''}
+                className={
+                  active === link.id || (link.id === 'about' && active === 'skills')
+                    ? 'underline decoration-[3px] underline-offset-8'
+                    : ''
+                }
                 onClick={() => setOpen(false)}
               >
                 {link.label}

@@ -7,7 +7,7 @@ import { Skills } from './components/Skills'
 import { Work } from './components/Work'
 import type { SectionId } from './content'
 
-const SECTION_IDS: readonly SectionId[] = ['hero', 'about', 'skills', 'work', 'contact']
+const SECTION_IDS: readonly SectionId[] = ['hero', 'work', 'about', 'skills', 'contact']
 
 function isSectionId(id: string | undefined): id is SectionId {
   return id !== undefined && (SECTION_IDS as readonly string[]).includes(id)
@@ -58,9 +58,9 @@ export default function App() {
       <Header ref={headerRef} active={active} />
       <main className="pt-[var(--header-h,8rem)]">
         <Hero />
+        <Work />
         <About />
         <Skills />
-        <Work />
         <Contact />
       </main>
     </>

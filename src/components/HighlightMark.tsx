@@ -18,7 +18,7 @@ export function HighlightMark({
   const shown = Boolean(reduce || play)
 
   return (
-    <span className="relative inline-block px-[0.12em] py-[0.08em] uppercase">
+    <span className="relative inline-block px-[0.12em] py-[0.12em] uppercase">
       <motion.span
         aria-hidden
         className="absolute inset-0 bg-accent"
