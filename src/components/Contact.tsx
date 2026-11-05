@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { SOCIAL } from '../content'
+import { CONTACT_EMAIL, SOCIAL } from '../content'
 import { fadeUp, inViewOnce, staggerContainer } from '../lib/motion'
 import { ContactSayHi } from './ContactSayHi'
 
@@ -34,14 +34,15 @@ export function Contact() {
               features, healthtech-adjacent products — tell me what&apos;s in the
               way.
             </p>
-            <motion.p
+            <motion.a
               variants={fadeUp}
-              className="mt-12 inline-flex w-fit select-all items-baseline font-display text-[clamp(1.35rem,4.5vw,3.15rem)] lowercase !leading-[1.12]"
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="mt-12 inline-flex w-fit items-baseline font-display text-[clamp(1.35rem,4.5vw,3.15rem)] lowercase !leading-[1.12] decoration-ink decoration-[3px] underline-offset-8 hover:underline"
             >
               hello
               <span className="font-sans font-extrabold">@</span>
               nikkibuilds.dev
-            </motion.p>
+            </motion.a>
             <motion.div variants={fadeUp} className="mt-8">
               <ContactSayHi />
             </motion.div>

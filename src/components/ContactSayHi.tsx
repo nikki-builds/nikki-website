@@ -11,12 +11,19 @@ export function ContactSayHi({ className = '' }: ContactSayHiProps) {
   const [message, setMessage] = useState('')
   const titleId = useId()
   const messageId = useId()
+  const triggerRef = useRef<HTMLButtonElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
+  const wasOpen = useRef(false)
 
   const close = useCallback(() => {
     setOpen(false)
     setCopied(false)
   }, [])
+
+  useEffect(() => {
+    if (wasOpen.current && !open) triggerRef.current?.focus()
+    wasOpen.current = open
+  }, [open])
 
   useEffect(() => {
     if (!open) return
@@ -53,6 +60,7 @@ export function ContactSayHi({ className = '' }: ContactSayHiProps) {
   return (
     <>
       <button
+        ref={triggerRef}
         type="button"
         className={`inline-flex items-center rounded-full border-[1.5px] border-ink bg-ink px-6 py-3 font-serif text-sm font-bold tracking-wide text-cream uppercase shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-[colors,box-shadow] hover:bg-cream hover:text-ink hover:shadow-[0_4px_12px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${className}`}
         aria-haspopup="dialog"
@@ -92,7 +100,7 @@ export function ContactSayHi({ className = '' }: ContactSayHiProps) {
               <button
                 ref={closeRef}
                 type="button"
-                className="grid size-9 shrink-0 place-items-center border border-ink bg-ink font-sans text-lg leading-none text-cream transition-colors hover:bg-accent hover:text-ink"
+                className="grid size-11 shrink-0 place-items-center border border-ink bg-ink font-sans text-lg leading-none text-cream transition-colors hover:bg-accent hover:text-ink"
                 aria-label="Close"
                 onClick={close}
               >
@@ -100,16 +108,31 @@ export function ContactSayHi({ className = '' }: ContactSayHiProps) {
               </button>
             </div>
 
-            <div className="mt-6 border border-ink/15 bg-cream px-4 py-3">
+            <div className="mt-6">
               <p className="font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-mute uppercase">
                 Email
               </p>
-              <a
-                href={mailHref}
-                className="mt-1.5 block font-sans text-[1.05rem] font-medium text-ink underline decoration-accent decoration-[2px] underline-offset-[5px] transition-colors hover:text-ink/80"
-              >
-                {CONTACT_EMAIL}
-              </a>
+              <div className="mt-1.5 flex items-center gap-1">
+                <p className="select-all font-sans text-[1.35rem] font-medium leading-none text-ink underline decoration-accent decoration-[2px] underline-offset-[5px]">
+                  {CONTACT_EMAIL}
+                </p>
+                <button
+                  type="button"
+                  className="grid size-11 shrink-0 place-items-center text-ink transition-colors hover:text-ink/70"
+                  aria-label="Copy email address"
+                  onClick={() => void copyEmail()}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
+                    <rect x="9" y="9" width="11" height="11" />
+                    <path d="M5 15V5h10" />
+                  </svg>
+                </button>
+                {copied && (
+                  <span className="font-sans text-sm text-mute" role="status">
+                    Copied
+                  </span>
+                )}
+              </div>
             </div>
 
             <label htmlFor={messageId} className="mt-4 block">
@@ -126,21 +149,12 @@ export function ContactSayHi({ className = '' }: ContactSayHiProps) {
               />
             </label>
 
-            <div className="mt-4 flex flex-wrap gap-2.5">
-              <button
-                type="button"
-                className="border border-ink bg-ink px-4 py-2.5 font-serif text-sm font-bold tracking-wide text-cream uppercase transition-colors hover:bg-accent hover:text-ink"
-                onClick={() => void copyEmail()}
-              >
-                {copied ? 'Copied' : 'Copy email'}
-              </button>
-              <a
-                href={mailHref}
-                className="border border-ink bg-cream px-4 py-2.5 font-serif text-sm font-bold tracking-wide text-ink uppercase transition-colors hover:bg-accent"
-              >
-                Open mail
-              </a>
-            </div>
+            <a
+              href={mailHref}
+              className="mt-4 inline-flex border border-ink bg-ink px-4 py-2.5 font-serif text-sm font-bold tracking-wide text-cream uppercase transition-colors hover:bg-accent hover:text-ink"
+            >
+              Open in mail app
+            </a>
           </div>
         </div>
       )}
