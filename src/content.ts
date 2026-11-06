@@ -27,14 +27,14 @@ export const PROJECTS: readonly Project[] = [
     title: 'RecipeLens',
     highlight: 'Lens',
     description:
-      'Photograph a plate — or a recipe card — and get a structured nutrient breakdown. Vision extraction, USDA matching, and a log you can actually keep.',
-    meta: 'Vision extraction · nutrient matching · Next.js + Postgres / Designed, built and shipped solo.',
-    tags: ['Web App', 'Healthtech', 'Claude Vision', 'Solo build'],
+      'Paste any recipe and get a full nutrition breakdown. AI pulls out the ingredients; the numbers come from a curated, USDA-based food database, not from the AI.',
+    meta: 'Ingredient parsing with GPT-4o-mini · USDA-based food database · React + Node + MongoDB / Designed, built and shipped solo.',
+    tags: ['Web App', 'Healthtech', 'OpenAI API', 'Solo build'],
     href: '/work/recipelens',
     caption: 'RecipeLens — app screenshot',
-    imageSrc: '/assets/images/recipelens-screenshot.png',
+    imageSrc: '/assets/images/recipelens-screenshot.webp',
     imageAlt:
-      'RecipeLens app screenshot showing nutrient breakdown from a photographed plate',
+      'RecipeLens nutrition analysis of spaghetti carbonara for 4 servings, with total macros and ingredient breakdown',
   },
   {
     index: '02',
