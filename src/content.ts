@@ -41,13 +41,14 @@ export const PROJECTS: readonly Project[] = [
     title: 'NutriGPT',
     highlight: 'GPT',
     description:
-      'A nutrition-focused assistant that turns meal questions into clear, actionable guidance — built for people who want answers, not another generic chatbot.',
-    meta: 'Applied AI · conversational UX · React + Node / Solo build.',
+      "A quick-answer nutrition assistant built to live on a nutrition business's website. Visitors get balance checks, protein estimates, and plain-language answers without leaving the page.",
+    meta: 'Applied AI · prompt design & guardrails · React + Node / Solo build.',
     tags: ['Web App', 'Healthtech', 'Applied AI'],
     href: '/work/nutrigpt',
     caption: 'NutriGPT — app screenshot',
-    imageSrc: '/assets/images/nutrigpt-screenshot.png',
-    imageAlt: 'NutriGPT chat interface showing nutrition Q&A',
+    imageSrc: '/assets/images/nutrigpt-screenshot.webp',
+    imageAlt:
+      'NutriGPT chat suggesting vegetables to balance a turkey sandwich lunch, then estimating about 27 g of protein for that lunch',
   },
   {
     index: '03',
