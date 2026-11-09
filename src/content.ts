@@ -55,13 +55,14 @@ export const PROJECTS: readonly Project[] = [
     title: 'Macro Calculator',
     highlight: 'Calculator',
     description:
-      'A macro and calorie calculator with a clean, mobile-first flow — set targets, adjust inputs, and see the numbers update in real time.',
-    meta: 'Frontend-focused build · React · Vercel / Solo build.',
+      'A calorie and macro calculator in US or metric units. Protein is set by body weight, targets never drop below a safe 1,200 kcal minimum, and everything runs in the browser.',
+    meta: 'Mifflin-St Jeor · g/kg protein logic · React · Vercel / Solo build.',
     tags: ['Web App', 'Healthtech', 'Frontend'],
     href: '/work/macro-calculator',
     caption: 'Macro Calculator — app screenshot',
-    imageSrc: '/assets/images/macrocalc-screenshot.png',
-    imageAlt: 'Macro Calculator app showing daily macro breakdown',
+    imageSrc: '/assets/images/macrocalc-screenshot.webp',
+    imageAlt:
+      'Macro Calculator with inputs in US units on the left and results on the right: a 1,964 kcal daily target with 79 g protein, 266 g carbs, and 65 g fat',
   },
 ]
 
