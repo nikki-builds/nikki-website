@@ -26,15 +26,35 @@ function ProjectImagePlaceholder({
   caption,
   imageSrc,
   imageAlt,
+  videoSrc,
+  posterSrc,
+  reduce,
 }: {
   caption: string
   imageSrc?: string
   imageAlt?: string
+  videoSrc?: string
+  posterSrc?: string
+  reduce: boolean
 }) {
+  const showVideo = Boolean(videoSrc) && !reduce
+  const stillSrc = videoSrc ? (posterSrc ?? imageSrc) : imageSrc
   return (
     <div className="relative aspect-[16/11] w-full overflow-hidden border-[1.5px] border-cream bg-[#e4e2dc] transition-[border-color,box-shadow] duration-300 group-hover:border-accent group-hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.55)] group-focus-visible:border-accent group-focus-visible:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.55)]">
-      {imageSrc ? (
-        <img src={imageSrc} alt={imageAlt ?? ''} className="absolute inset-0 h-full w-full object-cover" />
+      {showVideo ? (
+        <video
+          src={videoSrc}
+          poster={posterSrc ?? imageSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={imageAlt}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      ) : stillSrc ? (
+        <img src={stillSrc} alt={imageAlt ?? ''} className="absolute inset-0 h-full w-full object-cover" />
       ) : (
         <>
           <div
@@ -122,6 +142,9 @@ export function Work() {
                   caption={project.caption}
                   imageSrc={project.imageSrc}
                   imageAlt={project.imageAlt}
+                  videoSrc={project.videoSrc}
+                  posterSrc={project.posterSrc}
+                  reduce={reduce}
                 />
               </a>
             </motion.li>

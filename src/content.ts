@@ -19,6 +19,10 @@ export type Project = {
   caption: string
   imageSrc?: string
   imageAlt?: string
+  /** Optional looping demo video. Shown instead of the still image unless the visitor prefers reduced motion. */
+  videoSrc?: string
+  /** Frame shown before the video loads, and in place of the video for reduced motion. */
+  posterSrc?: string
 }
 
 export const PROJECTS: readonly Project[] = [
@@ -33,6 +37,8 @@ export const PROJECTS: readonly Project[] = [
     href: '/work/recipelens',
     caption: 'RecipeLens — app screenshot',
     imageSrc: '/assets/images/recipelens-screenshot.webp',
+    videoSrc: '/assets/images/recipelens-demo.mp4',
+    posterSrc: '/assets/images/recipelens-demo-poster.webp',
     imageAlt:
       'RecipeLens nutrition analysis of spaghetti carbonara for 4 servings, with total macros and ingredient breakdown',
   },
@@ -47,6 +53,8 @@ export const PROJECTS: readonly Project[] = [
     href: '/work/nutrigpt',
     caption: 'NutriGPT — app screenshot',
     imageSrc: '/assets/images/nutrigpt-screenshot.webp',
+    videoSrc: '/assets/images/nutrigpt-demo.mp4',
+    posterSrc: '/assets/images/nutrigpt-demo-poster.webp',
     imageAlt:
       'NutriGPT chat suggesting vegetables to balance a turkey sandwich lunch, then estimating about 27 g of protein for that lunch',
   },
@@ -61,6 +69,8 @@ export const PROJECTS: readonly Project[] = [
     href: '/work/macro-calculator',
     caption: 'Macro Calculator — app screenshot',
     imageSrc: '/assets/images/macrocalc-screenshot.webp',
+    videoSrc: '/assets/images/macrocalc-demo.mp4',
+    posterSrc: '/assets/images/macrocalc-demo-poster.webp',
     imageAlt:
       'Macro Calculator with inputs in US units on the left and results on the right: a 1,964 kcal daily target with 79 g protein, 266 g carbs, and 65 g fat',
   },
