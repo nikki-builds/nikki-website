@@ -79,7 +79,7 @@ export function FunFacts() {
         onClick={() => setOpen((v) => !v)}
       >
         <span
-          className="grid size-6 shrink-0 place-items-center border border-ink/70 text-[0.9rem] leading-none transition-colors group-hover:bg-accent group-hover:text-ink"
+          className="grid size-6 shrink-0 place-items-center border border-ink/70 text-[0.9rem] leading-none transition-colors group-hover:bg-ink group-hover:text-cream"
           aria-hidden="true"
         >
           {open ? '−' : '+'}

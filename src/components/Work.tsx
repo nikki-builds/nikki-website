@@ -29,6 +29,7 @@ function ProjectImagePlaceholder({
   videoSrc,
   posterSrc,
   reduce,
+  label,
 }: {
   caption: string
   imageSrc?: string
@@ -36,11 +37,21 @@ function ProjectImagePlaceholder({
   videoSrc?: string
   posterSrc?: string
   reduce: boolean
+  /** Small tag in the corner that says where a click goes. Always shown on touch screens, on hover on large ones. */
+  label?: string
 }) {
   const showVideo = Boolean(videoSrc) && !reduce
   const stillSrc = videoSrc ? (posterSrc ?? imageSrc) : imageSrc
   return (
     <div className="relative aspect-[16/11] w-full overflow-hidden border-[1.5px] border-cream bg-[#e4e2dc] transition-[border-color,box-shadow] duration-300 group-hover:border-accent group-hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.55)] group-focus-visible:border-accent group-focus-visible:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.55)]">
+      {label && (
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute top-3 right-3 z-10 bg-ink px-3 py-2 font-sans text-[0.7rem] font-bold tracking-[0.1em] text-cream uppercase transition-opacity duration-200 lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-visible:opacity-100"
+        >
+          {label}
+        </span>
+      )}
       {showVideo ? (
         <video
           src={videoSrc}
@@ -87,9 +98,6 @@ export function Work() {
           >
             Selected work
           </h2>
-          <p className="mb-1 shrink-0 font-serif text-sm font-bold tracking-wide text-accent uppercase sm:text-base">
-            03 / Projects
-          </p>
         </div>
 
         <ul>
@@ -108,7 +116,8 @@ export function Work() {
 
               <div className="max-w-xl">
                 <a
-                  href={project.href}
+                  href={project.caseStudyReady ? project.href : project.liveUrl}
+                  {...(project.caseStudyReady ? {} : { target: '_blank', rel: 'noreferrer' })}
                   className="group block w-fit focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                 >
                   <h3 className={titleClassName}>
@@ -125,18 +134,28 @@ export function Work() {
                   {project.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-sm bg-accent px-3 py-1.5 font-sans text-[0.68rem] font-semibold tracking-[0.12em] text-ink uppercase"
+                      className="border border-white/30 px-3 py-1.5 font-sans text-[0.68rem] font-semibold tracking-[0.12em] text-cream/85 uppercase"
                     >
                       {tag}
                     </li>
                   ))}
                 </ul>
+                {project.caseStudyReady && (
+                  <a
+                    href={project.href}
+                    className="mt-8 inline-flex min-h-11 items-center gap-2 font-sans text-[0.95rem] font-semibold text-cream underline decoration-white/40 decoration-[1.5px] underline-offset-[6px] transition-colors hover:decoration-cream"
+                  >
+                    How I built it <span aria-hidden="true">→</span>
+                  </a>
+                )}
               </div>
 
               <a
-                href={project.href}
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-                aria-label={`View ${project.title} case study`}
+                aria-label={`Try ${project.title} live (opens in a new tab)`}
               >
                 <ProjectImagePlaceholder
                   caption={project.caption}
@@ -145,6 +164,7 @@ export function Work() {
                   videoSrc={project.videoSrc}
                   posterSrc={project.posterSrc}
                   reduce={reduce}
+                  label="Try it live ↗"
                 />
               </a>
             </motion.li>

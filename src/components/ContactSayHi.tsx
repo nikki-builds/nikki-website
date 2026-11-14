@@ -1,11 +1,15 @@
-import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { CONTACT_EMAIL } from '../content'
 
 type ContactSayHiProps = {
   className?: string
+  /** What the trigger button says. */
+  label?: ReactNode
+  /** Replaces the default pill styling of the trigger. */
+  triggerClassName?: string
 }
 
-export function ContactSayHi({ className = '' }: ContactSayHiProps) {
+export function ContactSayHi({ className = '', label = 'Say hi', triggerClassName }: ContactSayHiProps) {
   const [open, setOpen] = useState(false)
   const [copied, setCopied] = useState(false)
   const [message, setMessage] = useState('')
@@ -62,12 +66,12 @@ export function ContactSayHi({ className = '' }: ContactSayHiProps) {
       <button
         ref={triggerRef}
         type="button"
-        className={`inline-flex items-center rounded-full border-[1.5px] border-ink bg-ink px-6 py-3 font-serif text-sm font-bold tracking-wide text-cream uppercase shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-[colors,box-shadow] hover:bg-cream hover:text-ink hover:shadow-[0_4px_12px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${className}`}
+        className={triggerClassName ?? `inline-flex items-center rounded-full border-[1.5px] border-ink bg-ink px-6 py-3 font-serif text-sm font-bold tracking-wide text-cream uppercase shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-[colors,box-shadow] hover:bg-cream hover:text-ink hover:shadow-[0_4px_12px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${className}`}
         aria-haspopup="dialog"
         aria-expanded={open}
         onClick={() => setOpen(true)}
       >
-        Say hi
+        {label}
       </button>
 
       {open && (
@@ -100,7 +104,7 @@ export function ContactSayHi({ className = '' }: ContactSayHiProps) {
               <button
                 ref={closeRef}
                 type="button"
-                className="grid size-11 shrink-0 place-items-center border border-ink bg-ink font-sans text-lg leading-none text-cream transition-colors hover:bg-accent hover:text-ink"
+                className="grid size-11 shrink-0 place-items-center border border-ink bg-ink font-sans text-lg leading-none text-cream transition-colors hover:bg-cream hover:text-ink"
                 aria-label="Close"
                 onClick={close}
               >
@@ -113,7 +117,7 @@ export function ContactSayHi({ className = '' }: ContactSayHiProps) {
                 Email
               </p>
               <div className="mt-1.5 flex items-center gap-1">
-                <p className="select-all font-sans text-[1.35rem] font-medium leading-none text-ink underline decoration-accent decoration-[2px] underline-offset-[5px]">
+                <p className="select-all font-sans text-[1.35rem] font-medium leading-none text-ink underline decoration-ink/30 decoration-[2px] underline-offset-[5px]">
                   {CONTACT_EMAIL}
                 </p>
                 <button
@@ -151,7 +155,7 @@ export function ContactSayHi({ className = '' }: ContactSayHiProps) {
 
             <a
               href={mailHref}
-              className="mt-4 inline-flex border border-ink bg-ink px-4 py-2.5 font-serif text-sm font-bold tracking-wide text-cream uppercase transition-colors hover:bg-accent hover:text-ink"
+              className="mt-4 inline-flex border border-ink bg-ink px-4 py-2.5 font-serif text-sm font-bold tracking-wide text-cream uppercase transition-colors hover:bg-cream hover:text-ink"
             >
               Open in mail app
             </a>

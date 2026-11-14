@@ -7,13 +7,13 @@ const cardReveal = staggerContainer(0.065, 0)
 const cardVariants = [slideFromLeft, fadeUp, slideFromRight] as const
 
 const cardClassName =
-  'group flex min-h-[320px] flex-col bg-accent px-7 py-8 text-ink transition-[transform,background-color,color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:bg-ink hover:text-cream hover:shadow-[0_10px_28px_-10px_rgba(0,0,0,0.55)]'
+  'flex flex-col border-t-[1.5px] border-ink pt-6 text-ink'
 
 const subgroupLabelClassName =
-  'mb-3 font-serif text-xs font-bold tracking-[0.14em] text-ink/70 uppercase transition-colors duration-300 ease-out group-hover:text-accent'
+  'mb-3 font-serif text-xs font-bold tracking-[0.14em] text-ink/70 uppercase'
 
 const listClassName =
-  'flex flex-col divide-y divide-ink/15 font-sans text-[0.95rem] body-copy transition-[border-color] duration-300 ease-out group-hover:divide-white/10'
+  'flex flex-col divide-y divide-ink/15 font-sans text-[0.95rem] body-copy'
 
 function SkillList({ items }: { items: readonly string[] }) {
   return (
@@ -33,24 +33,21 @@ export function Skills() {
   return (
     <section id="skills" className="bg-cream text-ink" aria-labelledby="skills-heading">
       <div className="mx-auto max-w-[1400px] overflow-x-clip px-5 py-20 sm:px-8 lg:px-12 lg:pb-28 lg:pt-8">
-        <div className="relative mb-14 lg:mb-20">
-          <p className="font-serif text-sm font-bold tracking-wider text-ink/70 uppercase lg:absolute lg:top-3 lg:left-0">
-            02 / Skills
-          </p>
+        <div className="mb-12 flex items-end justify-between gap-6 border-b border-ink pb-4 lg:mb-14">
           <motion.h2
             id="skills-heading"
             variants={fadeIn}
             initial={reduce ? 'show' : 'hidden'}
             whileInView="show"
             viewport={inViewOnce}
-            className="font-display text-center text-[clamp(3rem,10vw,7.5rem)] !leading-[1.12] !tracking-[0.02em]"
+            className="font-display text-[clamp(2.4rem,8vw,5.8rem)] !leading-[1.12] !tracking-[0.02em]"
           >
             What I do
           </motion.h2>
         </div>
 
         <motion.div
-          className="grid gap-4 md:grid-cols-3 md:gap-5"
+          className="grid gap-10 md:grid-cols-3 md:gap-8"
           variants={cardReveal}
           initial={reduce ? 'show' : 'hidden'}
           whileInView="show"

@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { About } from './components/About'
-import { Contact } from './components/Contact'
+import { FloatingChat } from './components/FloatingChat'
+import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { Skills } from './components/Skills'
@@ -61,8 +62,9 @@ export default function App() {
         <Work />
         <About />
         <Skills />
-        <Contact />
       </main>
+      <Footer />
+      <FloatingChat />
     </>
   )
 }

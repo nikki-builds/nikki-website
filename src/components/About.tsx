@@ -10,11 +10,7 @@ export function About() {
   return (
     <section id="about" className="bg-cream text-ink" aria-labelledby="about-heading">
       <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <div className="grid gap-8 lg:grid-cols-[minmax(7rem,0.22fr)_1fr] lg:gap-6">
-          <p className="font-serif text-sm font-bold tracking-wider text-ink/70 uppercase">
-            01 / About
-          </p>
-
+        <div>
           <motion.div
             variants={aboutReveal}
             initial={reduce ? 'show' : 'hidden'}

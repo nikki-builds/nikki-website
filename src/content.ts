@@ -1,7 +1,6 @@
 export const NAV_LINKS = [
   { id: 'work', label: 'Work' },
   { id: 'about', label: 'About' },
-  { id: 'contact', label: 'Contact' },
 ] as const
 
 export type SectionId = 'hero' | 'work' | 'about' | 'skills' | 'contact'
@@ -15,7 +14,12 @@ export type Project = {
   description: string
   meta: string
   tags: readonly string[]
+  /** Case study page. Linked only once caseStudyReady is true. */
   href: string
+  /** The deployed app; the video and title open it in a new tab. */
+  liveUrl: string
+  /** Turn on when the case study page exists, to show the "How I built it" link. */
+  caseStudyReady?: boolean
   caption: string
   imageSrc?: string
   imageAlt?: string
@@ -32,9 +36,10 @@ export const PROJECTS: readonly Project[] = [
     highlight: 'Lens',
     description:
       'Paste any recipe and get a full nutrition breakdown. AI pulls out the ingredients; the numbers come from a curated, USDA-based food database, not from the AI.',
-    meta: 'Ingredient parsing with GPT-4o-mini · USDA-based food database · React + Node + MongoDB / Designed, built and shipped solo.',
-    tags: ['Web App', 'Healthtech', 'OpenAI API', 'Solo build'],
+    meta: 'Ingredient parsing with GPT-4o-mini · USDA-based food database · React + Node + MongoDB',
+    tags: ['Web App', 'Healthtech', 'OpenAI API'],
     href: '/work/recipelens',
+    liveUrl: 'https://recipe-lens-erhr.vercel.app/',
     caption: 'RecipeLens — app screenshot',
     imageSrc: '/assets/images/recipelens-screenshot.webp',
     videoSrc: '/assets/images/recipelens-demo.mp4',
@@ -48,9 +53,10 @@ export const PROJECTS: readonly Project[] = [
     highlight: 'GPT',
     description:
       "A quick-answer nutrition assistant built to live on a nutrition business's website. Visitors get balance checks, protein estimates, and plain-language answers without leaving the page.",
-    meta: 'Applied AI · prompt design & guardrails · React + Node / Solo build.',
+    meta: 'Applied AI · prompt design & guardrails · React + Node',
     tags: ['Web App', 'Healthtech', 'Applied AI'],
     href: '/work/nutrigpt',
+    liveUrl: 'https://nutri-gpt.vercel.app/',
     caption: 'NutriGPT — app screenshot',
     imageSrc: '/assets/images/nutrigpt-screenshot.webp',
     videoSrc: '/assets/images/nutrigpt-demo.mp4',
@@ -64,9 +70,10 @@ export const PROJECTS: readonly Project[] = [
     highlight: 'Calculator',
     description:
       'A calorie and macro calculator in US or metric units. Protein is set by body weight, targets never drop below a safe 1,200 kcal minimum, and everything runs in the browser.',
-    meta: 'Mifflin-St Jeor · g/kg protein logic · React · Vercel / Solo build.',
+    meta: 'Mifflin-St Jeor · g/kg protein logic · React · Vercel',
     tags: ['Web App', 'Healthtech', 'Frontend'],
     href: '/work/macro-calculator',
+    liveUrl: 'https://macro-calculator-pi.vercel.app/',
     caption: 'Macro Calculator — app screenshot',
     imageSrc: '/assets/images/macrocalc-screenshot.webp',
     videoSrc: '/assets/images/macrocalc-demo.mp4',

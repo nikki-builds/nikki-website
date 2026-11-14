@@ -1,84 +1,53 @@
-import { motion, useReducedMotion, type Variants } from 'framer-motion'
-import { useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import { fadeEase, fadeUp, staggerContainer } from '../lib/motion'
-import { HighlightMark } from './HighlightMark'
-import { HeroPortrait } from './HeroPortrait'
+import { HeroIdeaCard } from './HeroIdeaCard'
 
-const headlineList: Variants = staggerContainer(0.09, 0.06)
-
-const restList: Variants = staggerContainer(0.14, 0.08)
+const heroText = staggerContainer(0.1, 0.06)
 
 export function Hero() {
   const reduce = Boolean(useReducedMotion())
-  const [marksPlay, setMarksPlay] = useState(false)
-  const [restPlay, setRestPlay] = useState(false)
 
   return (
-    <section
-      id="hero"
-      className="relative overflow-x-clip bg-cream"
-      aria-label="Introduction"
-    >
-      <div className="hero-grid mx-auto grid min-h-[calc(100svh-var(--header-h,8rem))] max-w-[1400px] items-center gap-10 px-5 pb-16 pt-4 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-12 lg:pb-10 lg:pt-0">
-        <div className="relative z-10 max-w-xl lg:max-w-none">
+    <section id="hero" className="relative overflow-x-clip bg-cream" aria-label="Introduction">
+      <div className="mx-auto grid min-h-[calc(100svh-var(--header-h,8rem))] max-w-[1400px] items-center gap-12 px-5 pt-6 pb-16 sm:px-8 lg:grid-cols-2 lg:gap-10 lg:px-12 lg:pt-0 lg:pb-12">
+        <motion.div
+          className="flex max-w-2xl flex-col"
+          variants={heroText}
+          initial={reduce ? 'show' : 'hidden'}
+          animate="show"
+        >
+          <motion.p variants={fadeUp} className="font-sans text-[1.2rem] font-semibold text-ink sm:text-[1.35rem]">
+            Hi, I&apos;m Nikki.
+          </motion.p>
           <motion.h1
-            className="hero-headline font-display flex flex-col gap-2 text-[clamp(3rem,8vw,6rem)] !leading-[1.32] text-ink"
-            variants={headlineList}
-            initial={reduce ? 'show' : 'hidden'}
-            animate="show"
-            onAnimationComplete={() => setMarksPlay(true)}
+            variants={fadeUp}
+            className="mt-5 font-display text-[clamp(2.6rem,5.6vw,4.4rem)] !leading-[1.07] !tracking-[-0.03em] text-ink"
           >
-            <motion.span variants={fadeUp}>Hi,</motion.span>
-            <motion.span variants={fadeUp}>
-              I&apos;m <HighlightMark play={marksPlay} delay={0}>Nikki</HighlightMark>
-            </motion.span>
-            <motion.span variants={fadeUp}>I build</motion.span>
-            <motion.span variants={fadeUp} className="whitespace-nowrap">
-              on the{' '}
-              <HighlightMark play={marksPlay} delay={0.45} onComplete={() => setRestPlay(true)}>
-                web
-              </HighlightMark>
-            </motion.span>
+            I turn ideas into websites and tools people come back to.
           </motion.h1>
-
-          <motion.div
-            variants={restList}
-            initial={reduce ? 'show' : 'hidden'}
-            animate={reduce || restPlay ? 'show' : 'hidden'}
+          <motion.p
+            variants={fadeUp}
+            className="mt-6 max-w-[34rem] font-sans text-[1.02rem] body-copy text-ink/80 sm:text-[1.1rem]"
           >
-            <motion.p
-              variants={fadeUp}
-              className="hero-lede mt-8 max-w-md border-l-[3px] border-accent pl-5 font-sans text-[0.98rem] body-copy text-ink sm:text-[1.05rem]"
+            From Webflow sites you can update yourself to custom web apps. My background in
+            nutrition taught me to start with the person, not the tech.
+          </motion.p>
+          <motion.div variants={fadeUp}>
+            <a
+              href="#work"
+              className="mt-9 inline-flex min-h-11 items-center rounded-[4px] bg-accent px-7 py-3.5 font-sans text-sm font-bold tracking-[0.08em] text-ink uppercase transition-colors duration-200 hover:bg-ink hover:text-cream"
             >
-              Production web apps for founders and small teams — healthtech,
-              applied AI, and the unglamorous systems in between. I own the data
-              model, the interface, and the deploy.
-            </motion.p>
-
-            <motion.div variants={fadeUp}>
-              <a
-                href="#work"
-                className="hero-cta mt-10 inline-flex items-center bg-ink px-8 py-3.5 font-serif text-sm font-bold tracking-wide text-white uppercase transition-transform duration-300 hover:-translate-y-0.5"
-              >
-                See the work
-              </a>
-            </motion.div>
+              See the work
+            </a>
           </motion.div>
-        </div>
+        </motion.div>
 
         <motion.div
-          className="hero-portrait-wrap relative mx-auto h-[min(72vh,640px)] w-full max-w-[420px] lg:mx-0 lg:h-[min(78vh,720px)] lg:max-w-none"
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, ease: fadeEase, delay: 0.08 }}
+          transition={{ duration: 0.6, ease: fadeEase, delay: 0.1 }}
         >
-          <div
-            className="absolute top-[6%] right-[8%] bottom-0 left-[22%] bg-accent"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-y-0 -left-[8%] right-0 lg:-left-[14%]">
-            <HeroPortrait />
-          </div>
+          <HeroIdeaCard />
         </motion.div>
       </div>
     </section>

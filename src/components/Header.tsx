@@ -19,7 +19,7 @@ const TONE: Record<
     bar: 'bg-ink',
     inverted: false,
     overlay: 'bg-cream text-ink',
-    navHover: 'hover:text-accent',
+    navHover: 'hover:text-ink/60',
   },
   ink: {
     bg: 'bg-ink',
@@ -27,7 +27,7 @@ const TONE: Record<
     bar: 'bg-cream',
     inverted: true,
     overlay: 'bg-ink text-cream',
-    navHover: 'hover:text-accent',
+    navHover: 'hover:text-cream/70',
   },
   accent: {
     bg: 'bg-accent',
