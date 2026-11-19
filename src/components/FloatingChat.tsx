@@ -6,6 +6,23 @@ import { ContactSayHi } from './ContactSayHi'
 export function FloatingChat() {
   const [heroVisible, setHeroVisible] = useState(true)
   const [footerVisible, setFooterVisible] = useState(false)
+  // Phones only: tuck the button away while reading down the page, bring it back on a scroll up,
+  // so it never sits on top of the text being read.
+  const [scrollingDown, setScrollingDown] = useState(false)
+
+  useEffect(() => {
+    const small = window.matchMedia('(max-width: 767px)')
+    let lastY = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      const delta = y - lastY
+      if (Math.abs(delta) < 8) return // ignore tiny jitters
+      setScrollingDown(small.matches && delta > 0)
+      lastY = y
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
     const hero = document.getElementById('hero')
@@ -24,7 +41,7 @@ export function FloatingChat() {
     return () => observers.forEach((io) => io.disconnect())
   }, [])
 
-  const show = !heroVisible && !footerVisible
+  const show = !heroVisible && !footerVisible && !scrollingDown
 
   return (
     <div
