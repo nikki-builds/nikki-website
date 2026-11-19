@@ -7,7 +7,7 @@ const cardReveal = staggerContainer(0.065, 0)
 const cardVariants = [slideFromLeft, fadeUp, slideFromRight] as const
 
 const cardClassName =
-  'flex flex-col border-t-[1.5px] border-ink pt-6 text-ink'
+  'flex flex-col border-t-[1.5px] border-ink pt-6 text-ink max-md:first:border-t-0 max-md:first:pt-0'
 
 const subgroupLabelClassName =
   'mb-3 font-sans text-xs font-bold tracking-[0.14em] text-ink/70 uppercase'

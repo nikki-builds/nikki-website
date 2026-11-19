@@ -117,7 +117,8 @@ export function ContactSayHi({ className = '', label = 'Say hi', triggerClassNam
                   id={titleId}
                   className="font-display text-[1.65rem] !leading-[1.15] !tracking-[0.02em]"
                 >
-                  Got an idea? Tell me more.
+                  Got an idea?
+                  <span className="block">Tell me more.</span>
                 </p>
                 <p className="mt-2 font-sans text-[0.9rem] body-copy text-ink/80">
                   Drop a note anytime — I read every email.

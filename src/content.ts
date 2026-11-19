@@ -5,7 +5,7 @@ export const NAV_LINKS = [
 
 export type SectionId = 'hero' | 'work' | 'about' | 'skills' | 'contact'
 
-export const CONTACT_EMAIL = 'hello@nikkibuilds.dev'
+export const CONTACT_EMAIL = 'nikki.buildsthis@gmail.com'
 
 export type Project = {
   index: string

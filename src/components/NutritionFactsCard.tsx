@@ -1,5 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion'
-import { useState } from 'react'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
+import { useRef, useState } from 'react'
 
 // A "Nutrition Facts" label about Nikki: a nod to the dietetics background.
 // Every line is a real fact; the % column is played straight as a label joke, not a statistic.
@@ -51,13 +51,18 @@ const rowClass =
 export function NutritionFactsCard() {
   const reduce = Boolean(useReducedMotion())
   const [note, setNote] = useState(DEFAULT_NOTE)
+  // Watch a still wrapper, not the card itself: the card starts moved up off its spot.
+  const ref = useRef<HTMLDivElement>(null)
+  // On a desktop the label is on screen right away; on a phone it waits until it is scrolled into view.
+  const inView = useInView(ref, { once: true, amount: 0.35 })
 
   return (
+    <div ref={ref}>
     <motion.section
       aria-labelledby="facts-heading"
       // Drops in tilted, pounds flat onto the page, ends straight.
       initial={reduce ? false : { y: -280, rotate: -9, scale: 1.06, opacity: 0 }}
-      animate={{ y: 0, rotate: 0, scale: 1, opacity: 1 }}
+      animate={reduce || inView ? { y: 0, rotate: 0, scale: 1, opacity: 1 } : undefined}
       transition={
         reduce
           ? { duration: 0 }
@@ -134,5 +139,6 @@ export function NutritionFactsCard() {
         <p className="mt-1.5 text-ink/70">*Percent Daily Values are based on a people-first diet.</p>
       </div>
     </motion.section>
+    </div>
   )
 }
