@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { createPortal } from 'react-dom'
 import { CONTACT_EMAIL } from '../content'
 
 type ContactSayHiProps = {
@@ -18,6 +20,7 @@ export function ContactSayHi({ className = '', label = 'Say hi', triggerClassNam
   const triggerRef = useRef<HTMLButtonElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   const wasOpen = useRef(false)
+  const reduce = Boolean(useReducedMotion())
 
   const close = useCallback(() => {
     setOpen(false)
@@ -66,7 +69,7 @@ export function ContactSayHi({ className = '', label = 'Say hi', triggerClassNam
       <button
         ref={triggerRef}
         type="button"
-        className={triggerClassName ?? `inline-flex items-center rounded-full border-[1.5px] border-ink bg-ink px-6 py-3 font-serif text-sm font-bold tracking-wide text-cream uppercase shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-[colors,box-shadow] hover:bg-cream hover:text-ink hover:shadow-[0_4px_12px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${className}`}
+        className={triggerClassName ?? `inline-flex items-center rounded-full border-[1.5px] border-ink bg-ink px-6 py-3 font-sans text-sm font-bold tracking-wide text-cream uppercase shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-[colors,box-shadow] hover:bg-cream hover:text-ink hover:shadow-[0_4px_12px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${className}`}
         aria-haspopup="dialog"
         aria-expanded={open}
         onClick={() => setOpen(true)}
@@ -74,30 +77,49 @@ export function ContactSayHi({ className = '', label = 'Say hi', triggerClassNam
         {label}
       </button>
 
-      {open && (
+      {/* Rendered into <body> so a moving or rotated parent (the hero card, the floating button)
+          can't trap the popup inside itself. */}
+      {open &&
+        createPortal(
         <div className="fixed inset-0 z-[100] flex items-end justify-center p-4 sm:items-center sm:p-8">
-          <button
+          <motion.button
             type="button"
             className="absolute inset-0 bg-ink/70"
             aria-label="Close contact popup"
             onClick={close}
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.25 }}
           />
 
-          <div
+          {/* Same landing as the hero card: drops in tilted, pounds flat, ends straight. */}
+          <motion.div
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            className="relative z-10 w-full max-w-md border-[1.5px] border-ink bg-cream p-6 text-ink shadow-[0_24px_64px_-12px_rgba(0,0,0,0.55)] sm:p-7"
+            initial={reduce ? false : { y: -280, rotate: -9, scale: 1.06, opacity: 0 }}
+            animate={{ y: 0, rotate: 0, scale: 1, opacity: 1 }}
+            transition={
+              reduce
+                ? { duration: 0 }
+                : {
+                    y: { type: 'spring', stiffness: 520, damping: 24, mass: 1.1 },
+                    rotate: { type: 'spring', stiffness: 420, damping: 30 },
+                    scale: { type: 'spring', stiffness: 520, damping: 28 },
+                    opacity: { duration: 0.12 },
+                  }
+            }
+            className="relative z-10 w-full max-w-md origin-bottom overflow-hidden rounded-[6px] bg-cream text-ink shadow-[0_24px_64px_-12px_rgba(0,0,0,0.55)]"
           >
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start justify-between gap-4 bg-accent p-6 sm:p-7">
               <div>
                 <p
                   id={titleId}
                   className="font-display text-[1.65rem] !leading-[1.15] !tracking-[0.02em]"
                 >
-                  Say hi
+                  Got an idea? Tell me more.
                 </p>
-                <p className="mt-2 font-sans text-[0.9rem] body-copy text-mute">
+                <p className="mt-2 font-sans text-[0.9rem] body-copy text-ink/80">
                   Drop a note anytime — I read every email.
                 </p>
               </div>
@@ -112,7 +134,8 @@ export function ContactSayHi({ className = '', label = 'Say hi', triggerClassNam
               </button>
             </div>
 
-            <div className="mt-6">
+            <div className="p-6 sm:p-7">
+            <div>
               <p className="font-sans text-[0.68rem] font-semibold tracking-[0.14em] text-mute uppercase">
                 Email
               </p>
@@ -155,13 +178,14 @@ export function ContactSayHi({ className = '', label = 'Say hi', triggerClassNam
 
             <a
               href={mailHref}
-              className="mt-4 inline-flex border border-ink bg-ink px-4 py-2.5 font-serif text-sm font-bold tracking-wide text-cream uppercase transition-colors hover:bg-cream hover:text-ink"
+              className="mt-4 inline-flex border border-ink bg-ink px-4 py-2.5 font-sans text-sm font-bold tracking-wide text-cream uppercase transition-colors hover:bg-cream hover:text-ink"
             >
               Open in mail app
             </a>
-          </div>
+            </div>
+          </motion.div>
         </div>
-      )}
+        , document.body)}
     </>
   )
 }

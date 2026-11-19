@@ -90,7 +90,7 @@ export function Work() {
 
   return (
     <section id="work" className="bg-ink text-cream" aria-labelledby="work-heading">
-      <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:px-12 lg:py-24">
+      <div className="mx-auto max-w-[1200px] px-5 py-20 sm:px-8 lg:px-20 lg:py-24">
         <div className="flex items-end justify-between gap-6 border-b border-cream pb-4">
           <h2
             id="work-heading"
@@ -107,7 +107,7 @@ export function Work() {
               variants={fadeUp}
               initial={reduce ? 'show' : 'hidden'}
               whileInView="show"
-              viewport={{ ...inViewOnce, amount: 0.2 }}
+              viewport={inViewOnce}
               className={`grid gap-8 py-12 lg:grid-cols-[3.5rem_minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-8 lg:py-14 ${
                 i < PROJECTS.length - 1 ? 'border-b border-white/15' : ''
               }`}

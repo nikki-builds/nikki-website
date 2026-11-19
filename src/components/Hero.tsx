@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { fadeEase, fadeUp, staggerContainer } from '../lib/motion'
-import { HeroIdeaCard } from './HeroIdeaCard'
+import { NutritionFactsCard } from './NutritionFactsCard'
 
 const heroText = staggerContainer(0.1, 0.06)
 
@@ -9,7 +9,7 @@ export function Hero() {
 
   return (
     <section id="hero" className="relative overflow-x-clip bg-cream" aria-label="Introduction">
-      <div className="mx-auto grid min-h-[calc(100svh-var(--header-h,8rem))] max-w-[1400px] items-center gap-12 px-5 pt-6 pb-16 sm:px-8 lg:grid-cols-2 lg:gap-10 lg:px-12 lg:pt-0 lg:pb-12">
+      <div className="mx-auto grid min-h-[calc(100svh-var(--header-h,8rem))] max-w-[1200px] items-center gap-12 px-5 pt-6 pb-16 sm:px-8 lg:grid-cols-2 lg:gap-10 lg:px-20 lg:pt-0 lg:pb-12">
         <motion.div
           className="flex max-w-2xl flex-col"
           variants={heroText}
@@ -47,7 +47,7 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, ease: fadeEase, delay: 0.1 }}
         >
-          <HeroIdeaCard />
+          <NutritionFactsCard />
         </motion.div>
       </div>
     </section>

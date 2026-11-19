@@ -1,5 +1,4 @@
-import { AnimatePresence, motion, useReducedMotion, type Variants } from 'framer-motion'
-import { useId, useState } from 'react'
+import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { FUN_FACTS, type FunFact } from '../content'
 
 const fadeEase = [0.22, 1, 0.36, 1] as const
@@ -55,7 +54,8 @@ function FunFactsChipList({ reduce }: { reduce: boolean }) {
       className="mt-5 flex flex-wrap gap-x-3 gap-y-3.5 pb-1 text-left font-sans tracking-[0.02em]"
       variants={listVariants}
       initial={reduce ? 'show' : 'hidden'}
-      animate="show"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.3, margin: '0px 0px -20% 0px' }}
     >
       {FUN_FACTS.map((fact) => (
         <FunFactChip key={fact.text} fact={fact} reduce={reduce} />
@@ -64,43 +64,16 @@ function FunFactsChipList({ reduce }: { reduce: boolean }) {
   )
 }
 
+// Fun facts, always visible (they used to hide behind an "Extra credit" toggle).
 export function FunFacts() {
-  const [open, setOpen] = useState(false)
   const reduce = Boolean(useReducedMotion())
-  const panelId = useId()
 
   return (
     <div>
-      <button
-        type="button"
-        className="group inline-flex items-center gap-2.5 text-left font-sans text-[0.95rem] tracking-[0.04em] text-ink/70 transition-opacity hover:opacity-80 max-sm:min-h-11"
-        aria-expanded={open}
-        aria-controls={panelId}
-        onClick={() => setOpen((v) => !v)}
-      >
-        <span
-          className="grid size-6 shrink-0 place-items-center border border-ink/70 text-[0.9rem] leading-none transition-colors group-hover:bg-ink group-hover:text-cream"
-          aria-hidden="true"
-        >
-          {open ? '−' : '+'}
-        </span>
-        Extra credit
-      </button>
-
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            id={panelId}
-            initial={reduce ? false : { height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={reduce ? undefined : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.38, ease: fadeEase }}
-            className="overflow-hidden pb-2"
-          >
-            <FunFactsChipList reduce={reduce} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <h3 className="font-sans text-[0.75rem] font-semibold tracking-[0.14em] text-ink/70 uppercase">
+        Off the clock
+      </h3>
+      <FunFactsChipList reduce={reduce} />
     </div>
   )
 }

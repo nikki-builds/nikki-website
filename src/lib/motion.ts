@@ -49,4 +49,6 @@ export function staggerContainer(
   }
 }
 
-export const inViewOnce = { once: true, amount: 0.25 } as const
+// Start an entrance only once the element has come up past the bottom fifth of the screen,
+// so it plays where people are actually looking, not the moment its edge peeks in.
+export const inViewOnce = { once: true, amount: 0.15, margin: '0px 0px -20% 0px' } as const

@@ -79,7 +79,7 @@ export const PROJECTS: readonly Project[] = [
     videoSrc: '/assets/images/macrocalc-demo.mp4',
     posterSrc: '/assets/images/macrocalc-demo-poster.webp',
     imageAlt:
-      'Macro Calculator with inputs in US units on the left and results on the right: a 1,964 kcal daily target with 79 g protein, 266 g carbs, and 65 g fat',
+      'Macro Calculator results: a 2,140 kcal daily target with 91 g protein, 284 g carbs, and 71 g fat',
   },
 ]
 
@@ -98,21 +98,18 @@ export type SkillColumn = {
 export const SKILL_COLUMNS: readonly SkillColumn[] = [
   {
     index: '01',
-    title: 'Web app development',
-    groups: [
-      {
-        label: 'Frontend',
-        items: ['React, Tailwind CSS', 'Vercel'],
-      },
-      {
-        label: 'Backend',
-        items: ['Node.js, Express', 'MongoDB, Mongoose', 'OpenAI API (GPT-4o)'],
-      },
+    title: 'Custom web apps',
+    items: [
+      'React, Tailwind CSS',
+      'Node.js, Express',
+      'MongoDB, Mongoose',
+      'OpenAI API',
+      'Vercel, Render',
     ],
   },
   {
     index: '02',
-    title: 'Website builds',
+    title: 'Website design & build',
     items: [
       'Webflow design & build',
       'CMS the client can edit',
@@ -167,7 +164,7 @@ export const FUN_FACTS: readonly FunFact[] = [
 ]
 
 export const SOCIAL = [
-  { label: 'GitHub', href: 'https://github.com' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com' },
+  { label: 'GitHub', href: 'https://github.com/nikki-builds' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/nikki-nayeon-kim-8ab53435b/' },
   { label: 'Résumé (PDF)', href: '/resume.pdf' },
 ] as const
